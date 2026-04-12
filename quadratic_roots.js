@@ -1,0 +1,25 @@
+//Quadratic roots;
+        var a = prompt("Enter the value of a:","");
+        var b = prompt("Enter the value of b:","");
+        var c = prompt("Enter the value of c:","");
+
+        var discriminant = b*b-4.0*a*c;
+        var denom= 2.0*a;
+
+        if (discriminant > 0){
+            var root1= (-b+ Math.sqrt(discriminant))/denom;
+            var root2= (-b- Math.sqrt(discriminant))/denom;
+            console.log("Roots are: ", root1, root2);
+            document.write("<br>Roots are: " + root1 + ", " + root2);
+            alert("Roots are: " + root1 + ", " + root2);
+        } 
+        else if (discriminant == 0){
+            var root=-b/denom;
+            console.log("Root is: ", root,root);
+            document.write("<br>Root is: " + root);
+            alert("Root is: " + root);
+        }
+        else{
+            console.log("No real roots");
+            document.write("<br>No real roots");    
+        }
