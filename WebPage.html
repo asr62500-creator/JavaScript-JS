@@ -17,14 +17,14 @@
         
         :root {
             /* Vibrant Brand Colors */
-            --primary-bg: #030b17; /* Very dark blue */
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-1: #00d2ff; /* Cyan */
-            --accent-2: #3a7bd5; /* Deep Blue */
-            --accent-glow: rgba(0, 210, 255, 0.5);
-            --text-main: #f8f9fa;
-            --text-muted: #adb5bd;
+            --primary-bg: #b5eb12f6; /* Very dark blue */
+            --glass-bg: rgba(44, 4, 21, 0.958);
+            --glass-border: rgba(165, 21, 134, 0.901);
+            --accent-1: #5e8d06d2; /* Cyan */
+            --accent-2: #d81616; /* Deep Blue */
+            --accent-glow: rgba(186, 233, 31, 0.954);
+            --text-main: #e6f1ff;
+            --text-muted: #a8b2d1;
             
             /* Sidebar width */
             --sidebar-width: 280px;
@@ -41,18 +41,10 @@
             background-color: var(--primary-bg);
             color: var(--text-main);
             overflow-x: hidden;
-            /* Animated gradient background */
-            background: linear-gradient(120deg, #030b17, #0a192f, #020c1b);
-            background-size: 200% 200%;
-            animation: gradientBG 15s ease infinite;
+            /* Static gradient background */
+            background: linear-gradient(120deg, #15d322, #095c02fe, #089a19);
             min-height: 100vh;
             display: flex;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Abstract glowing orbs in background */
@@ -66,7 +58,7 @@
         .glow-orb-1 {
             width: 400px;
             height: 400px;
-            background: rgba(58, 123, 213, 0.2);
+            background: rgba(8, 228, 52, 0.2)
             top: -100px;
             left: 20%;
         }
@@ -91,7 +83,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(10, 25, 47, 0.6);
+            background: rgba(15, 115, 145, 0.959);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-right: 1px solid var(--glass-border);
@@ -150,7 +142,7 @@
 
         .nav-btn:hover, .nav-btn.active {
             color: white;
-            background: linear-gradient(90deg, rgba(0, 210, 255, 0.1), transparent);
+            background: linear-gradient(90deg, rgb(251, 4, 45), transparent);
         }
 
         .nav-btn.active::before {
@@ -173,7 +165,7 @@
             color: #8892b0;
         }
         .dropdown-btn:hover {
-            color: var(--accent-1);
+            color: #ffff66;
         }
 
         /* MAIN CONTENT AREA */
@@ -259,9 +251,9 @@
         }
         .glass-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
-            border-color: rgba(0, 210, 255, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(200, 200, 200, 0.15);
+            border-color: red;
+            background: rgba(12, 147, 177, 0.495);
         }
         .glass-card::before {
             content: '';
@@ -358,7 +350,7 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--primary-bg); }
         ::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.3); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-1); }
+        ::-webkit-scrollbar-thumb:hover { background: #ffff66; }
 
         /* Modals Glassmorphism */
         .modal-content {
@@ -385,6 +377,11 @@
         }
         .form-control::placeholder { color: rgba(255,255,255,0.4); }
 
+        /* Override Bootstrap text-muted for better visibility */
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
     </style>
 </head>
 <body>
@@ -396,25 +393,24 @@
     <!-- SIDEBAR -->
     <nav class="sidebar">
         <div class="sidebar-brand">
-            <h2><i class="fa-solid fa-graduation-cap me-2"></i>JAMMU UNI</h2>
+            <h2><i class="fa-solid fa-graduation-cap me-2"></i>JAMMU UNIVERSITY</h2>
         </div>
 
         <button class="nav-btn active" onclick="showSection('home', this)">
-            <i class="fa-solid fa-house"></i> Overview
+            <i class="fa-solid fa-house"></i> Home
         </button>
         
         <button class="nav-btn" onclick="showSection('courses', this)">
-            <i class="fa-solid fa-book-open"></i> Programs
+            <i class="fa-solid fa-book-open"></i> Courses
         </button>
 
-        <!-- Dropdown functionality -->
-        <button class="nav-btn" onclick="toggleDropdown(this)">
-            <i class="fa-solid fa-user-graduate"></i> Student Zone <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 0.8em"></i>
+        <button class="nav-btn" onclick="showSection('student', this)">
+            <i class="fa-solid fa-user-graduate"></i> Student Zone
         </button>
-        <div class="dropdown-container">
-            <button class="nav-btn dropdown-btn" onclick="showSection('student', this)">Login & Auth</button>
-            <button class="nav-btn dropdown-btn" onclick="showSection('academic', this)">Academics</button>
-        </div>
+
+        <button class="nav-btn" onclick="showSection('academic', this)">
+            <i class="fa-solid fa-book"></i> Academics
+        </button>
 
         <button class="nav-btn" onclick="showSection('staff', this)">
             <i class="fa-solid fa-users"></i> Faculty
@@ -438,16 +434,16 @@
                 <h4 class="mb-0 fw-bold">Welcome to University of Jammu</h4>
             </div>
             <div class="header-tagline">
-                <i class="fa-solid fa-award text-warning"></i> NAAC A+ ACCREDITED
+                <i class="fa-solid fa-award text-warning"></i> NAAC A++ ACCREDITED
             </div>
-            <button class="btn btn-outline-glass btn-sm" onclick="alert('Search feature coming soon!')">
+            <button class="btn btn-outline-glass btn-sm" data-bs-toggle="modal" data-bs-target="#searchModal">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </header>
 
         <!-- OVERVIEW SECTION -->
         <section id="home" class="section active-section">
-            <h2 class="section-title">Overview</h2>
+            <h2 class="section-title">Home</h2>
             
             <div class="banner-wrapper">
                 <img src="UniversityImage.jpg" alt="University Campus" class="banner-img">
@@ -528,14 +524,11 @@
 
         <!-- STUDENT CORNER SECTION -->
         <section id="student" class="section">
-            <h2 class="section-title">Student Corner</h2>
+            <h2 class="section-title">Student Zone</h2>
             
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     <div class="glass-card p-5 text-center">
-                        <i class="fa-solid fa-fingerprint fa-4x mb-4 text-info"></i>
-                        <h3 class="fw-bold text-white mb-3">Secure Access Gateway</h3>
-                        <p class="text-muted mb-4 fs-5">Access your academic portal, internal results, e-library, and specialized university dashboards here.</p>
                         
                         <div class="d-flex justify-content-center gap-3">
                             <button class="btn btn-glow px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -806,6 +799,25 @@
     </div>
 
 
+    <!-- SEARCH MODAL -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="background: rgba(10, 25, 47, 0.95); backdrop-filter: blur(25px);">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-0 text-info fs-5"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" id="searchInput" class="form-control form-control-lg border-0 shadow-none text-white bg-transparent" placeholder="Search courses, faculty, student zone..." onkeyup="performSearch()">
+                    </div>
+                </div>
+                <div class="modal-body p-0">
+                    <ul id="searchResults" class="list-group list-group-flush bg-transparent">
+                        <!-- Results will be dynamically populated -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap & Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -902,6 +914,75 @@
             `;
             div.style.display = 'block';
             div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        // --- Search Functionality ---
+        const searchableContent = [
+            { id: 'home', title: 'Home / Overview', desc: 'Welcome, Excellence in Education, Virtual Tour' },
+            { id: 'courses', title: 'Academic Programs (Courses)', desc: 'BCA, B.Sc, B.Com, MCA, MBA details' },
+            { id: 'student', title: 'Student Zone', desc: 'Login, Register, Secure Access Gateway, Portal' },
+            { id: 'academic', title: 'Academics', desc: 'Results, Attendance, Exam Schedules, Study Materials, e-Library' },
+            { id: 'staff', title: 'Faculty & Staff', desc: 'Teaching, Non-Teaching, Professors, Administration' },
+            { id: 'about', title: 'About Us', desc: 'Legacy, History, Infrastructure, Campus Life' },
+            { id: 'contact', title: 'Contact Information', desc: 'Campus Location, Email, Phone, Social Media Updates' }
+        ];
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultsList = document.getElementById('searchResults');
+            resultsList.innerHTML = '';
+
+            if (query.trim().length === 0) return;
+
+            const filtered = searchableContent.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                resultsList.innerHTML = '<li class="list-group-item text-muted text-center py-4 bg-transparent border-0">No matching sections found.</li>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item p-3 border-0 border-bottom d-flex align-items-center';
+                li.style.background = 'transparent';
+                li.style.cursor = 'pointer';
+                li.style.color = '#e6f1ff';
+                li.style.borderBottomColor = 'rgba(255,255,255,0.05) !important';
+                
+                li.innerHTML = `
+                    <i class="fa-solid fa-arrow-right text-info me-3"></i>
+                    <div>
+                        <h6 class="mb-0 fw-bold">${item.title}</h6>
+                        <small class="text-muted">${item.desc}</small>
+                    </div>
+                `;
+                
+                li.onmouseover = () => { li.style.background = 'rgba(255, 255, 100, 0.1)'; };
+                li.onmouseout = () => { li.style.background = 'transparent'; };
+                
+                li.onclick = () => {
+                    // Close Modal
+                    const searchModalEl = document.getElementById('searchModal');
+                    const modal = bootstrap.Modal.getInstance(searchModalEl);
+                    modal.hide();
+                    
+                    // Clear search
+                    document.getElementById('searchInput').value = '';
+                    resultsList.innerHTML = '';
+                    
+                    // Navigate simulating click to proper nav button if possible
+                    showSection(item.id, null);
+                    
+                    // Re-highlight the correct sidebar button
+                    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                    const navBtn = document.querySelector(`.nav-btn[onclick*="${item.id}"]`);
+                    if(navBtn) navBtn.classList.add('active');
+                };
+                resultsList.appendChild(li);
+            });
         }
     </script>
 </body>
