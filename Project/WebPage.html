@@ -101,13 +101,17 @@
             text-align: center;
         }
         .sidebar-brand h2 {
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            font-size: 1.6rem;
-        }
+    font-weight: 800;
+
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+    /* Required for gradient text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* fallback */
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+}
 
         .nav-btn {
             width: 100%;
@@ -268,14 +272,16 @@
         }
 
         /* Interactive Elements */
-        .course-badge {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
+       .course-badge {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;   /* FIXED */
+    -webkit-text-fill-color: transparent;
+    color: transparent;      /* fallback */
+    display: inline-block;
+}
 
         .btn-glow {
             background: linear-gradient(45deg, var(--accent-2), var(--accent-1));
