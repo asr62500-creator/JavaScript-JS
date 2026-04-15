@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future College</title>
+    <!-- Bootstrap 5 CSS for styling and responsiveness -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Internal CSS */
+        :root {
+            --primary: #4f46e5; /* Indigo */
+            --primary-hover: #4338ca;
+            --secondary: #10b981; /* Emerald */
+            --accent: #f59e0b; /* Amber */
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Settings */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark) !important;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary) !important;
+        }
+        .btn-login {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 24px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+        }
+        .btn-login:hover {
+            background-color: var(--primary-hover);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Hero banner */
+        .hero {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(16, 185, 129, 0.9)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 120px 0 100px;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .custom-card {
+            background: white;
+            border-radius: 15px;
+            border: none;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+        }
+        .custom-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--accent);
+        }
+        .custom-card h3 {
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--primary);
+        }
+
+        /* Details Div */
+        .details-container {
+            display: none; /* hidden by default */
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .details-title {
+            color: var(--primary);
+            font-weight: 700;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Modals (Login/Signup) */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            overflow: hidden;
+        }
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            border-bottom: none;
+        }
+        .modal-title {
+            font-weight: 700;
+        }
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+        }
+        .btn-theme {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .btn-theme:hover {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+        .toggle-link {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Captcha Box */
+        .captcha-box {
+            background-color: #e2e8f0;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-align: center;
+            border-radius: 6px;
+            user-select: none;
+            margin-bottom: 10px;
+            color: #333;
+            text-decoration: line-through;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="80">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">🎓 BrightFuture</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#coursesList">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#staffList">Staff</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-login" data-bs-toggle="modal" data-bs-target="#authModal" onclick="showLoginForm()">Student Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Shape Your Tomorrow</h1>
+            <p>Join the premier college that empowers students with leading education, modern labs, and outstanding placements.</p>
+            <a href="#coursesList" class="btn btn-theme px-4 py-2 mt-3" style="background-color: var(--accent); color: var(--dark);">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section id="coursesList" class="container py-5 mt-4">
+        <h2 class="section-title">Our Top Courses</h2>
+        <div class="row g-4">
+            <!-- BCA Card -->
+            <div class="col-md-4">
+                <div class="custom-card" onclick="showCourse('BCA')">
+                    <div style="font-size: 3rem;">💻</div>
+                    <h3>BCA</h3>
+                    <p class="text-muted">Bachelor of Computer Applications</p>
+                    <span class="btn btn-outline-primary btn-sm mt-2">View Details</span>
+                </div>
+            </div>
+            <!-- B.Sc Card -->
+            <div class="col-md-4">
+                <div class="custom-card" onclick="showCourse('B.Sc')">
+                    <div style="font-size: 3rem;">🔬</div>
+                    <h3>B.Sc</h3>
+                    <p class="text-muted">Bachelor of Science</p>
+                    <span class="btn btn-outline-primary btn-sm mt-2">View Details</span>
+                </div>
+            </div>
+            <!-- MBA Card -->
+            <div class="col-md-4">
+                <div class="custom-card" onclick="showCourse('MBA')">
+                    <div style="font-size: 3rem;">📊</div>
+                    <h3>MBA</h3>
+                    <p class="text-muted">Master of Business Administration</p>
+                    <span class="btn btn-outline-primary btn-sm mt-2">View Details</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Course Details Container -->
+        <div id="courseDetails" class="details-container">
+            <!-- Content gets populated via JavaScript -->
+        </div>
+    </section>
+
+    <!-- STAFF SECTION -->
+    <section id="staffList" class="container py-5 bg-light" style="border-radius: 20px;">
+        <h2 class="section-title">Meet Our Staff</h2>
+        
+        <ul class="nav nav-pills justify-content-center mb-4" id="staffTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="teaching-tab" data-bs-toggle="tab" data-bs-target="#teaching" type="button" role="tab">Teaching Staff</button>
+            </li>
+            <li class="nav-item ms-2" role="presentation">
+                <button class="nav-link fw-bold" id="non-teaching-tab" data-bs-toggle="tab" data-bs-target="#non-teaching" type="button" role="tab">Non-Teaching Staff</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="staffTabsContent">
+            <!-- Teaching Staff Tab -->
+            <div class="tab-pane fade show active" id="teaching" role="tabpanel">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Dr. Rajesh Sharma')">
+                            <h5 class="fw-bold">Dr. Rajesh Sharma</h5>
+                            <span class="badge bg-primary">Computer Science</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Dr. Neha Gupta')">
+                            <h5 class="fw-bold">Dr. Neha Gupta</h5>
+                            <span class="badge bg-success">Management</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Dr. Amit Verma')">
+                            <h5 class="fw-bold">Dr. Amit Verma</h5>
+                            <span class="badge bg-warning text-dark">Physics</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Dr. Pooja Singh')">
+                            <h5 class="fw-bold">Dr. Pooja Singh</h5>
+                            <span class="badge bg-info text-dark">Commerce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Teaching Staff Tab -->
+            <div class="tab-pane fade" id="non-teaching" role="tabpanel">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Mr. Suresh Kumar')">
+                            <h5 class="fw-bold">Mr. Suresh Kumar</h5>
+                            <span class="badge bg-secondary">Administration</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="custom-card" onclick="showStaff('Ms. Anita Singh')">
+                            <h5 class="fw-bold">Ms. Anita Singh</h5>
+                            <span class="badge bg-secondary">Library Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Staff Details Container -->
+        <div id="staffDetails" class="details-container">
+            <!-- Content gets populated via JavaScript -->
+        </div>
+    </section>
+
+    <!-- STUDENT CORNER AUTHENTICATION MODAL -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Student Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    
+                    <!-- LOGIN FORM -->
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Username / Email</label>
+                            <input type="text" class="form-control" id="loginEmail" required placeholder="Enter username or email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required placeholder="Enter password">
+                        </div>
+                        
+                        <!-- CAPTCHA -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Enter the CAPTCHA below</label>
+                            <div class="captcha-box" id="captchaTextDisplay">X7F9A</div>
+                            <input type="text" class="form-control mt-2" id="loginCaptcha" required placeholder="Type CAPTCHA here">
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="loginRemember">
+                            <label class="form-check-label text-muted" for="loginRemember">Remember Me</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-theme w-100 mt-2">Login</button>
+                        
+                        <div class="text-center mt-4">
+                            <span>Don't have an account? <span class="toggle-link" onclick="showSignupForm()">Sign Up</span></span>
+                        </div>
+                    </form>
+
+
+                    <!-- SIGN UP FORM (Initially Hidden) -->
+                    <form id="signupForm" style="display: none;" onsubmit="handleSignup(event)">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Full Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter full name">
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Email ID</label>
+                                <input type="email" class="form-control" required placeholder="name@example.com">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Phone Number</label>
+                                <input type="tel" class="form-control" required placeholder="10-digit number" pattern="[0-9]{10}">
+                            </div>
+                        </div>
+
+                        <!-- Gender Radio Buttons -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male" required>
+                                <label class="form-check-label" for="genderMale">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
+                                <label class="form-check-label" for="genderFemale">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderOther" value="Other">
+                                <label class="form-check-label" for="genderOther">Other</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Address</label>
+                            <textarea class="form-control" rows="2" required placeholder="Enter complete address"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email Verification <small class="text-danger">(Required)</small></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter OTP" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="alert('OTP Sent to your Email!')">Get OTP</button>
+                            </div>
+                            <div class="form-text">Dummy verification field</div>
+                        </div>
+
+                        <!-- Optional fields -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Alternate Phone <small class="text-muted">(Optional)</small></label>
+                                <input type="tel" class="form-control" placeholder="Optional">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Alternate Email <small class="text-muted">(Optional)</small></label>
+                                <input type="email" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+
+                        <div class="mb-2 form-check">
+                            <input type="checkbox" class="form-check-input" id="signupRemember">
+                            <label class="form-check-label text-muted" for="signupRemember">Remember Me (Optional)</label>
+                        </div>
+
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="acceptPolicy" required>
+                            <label class="form-check-label" for="acceptPolicy">I accept the <a href="#" class="text-primary">Terms and Policy</a></label>
+                        </div>
+
+                        <button type="submit" class="btn btn-theme w-100">Create Account</button>
+                        
+                        <div class="text-center mt-3">
+                            <span>Already have an account? <span class="toggle-link" onclick="showLoginForm()">Login</span></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Bright Future College. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Internal JS -->
+    <script>
+        // COURSE DETAILS DATA
+        const coursesData = {
+            'BCA': {
+                title: 'Bachelor of Computer Applications (BCA)',
+                icon: '💻',
+                duration: '3 Years',
+                subjects: 'Programming in C/C++, Java, Python, Web Development, DBMS, Data Structures.',
+                career: 'Software Developer, Web Designer, System Analyst, Database Administrator.',
+                description: 'BCA is an undergraduate program focused on computer applications and software development.'
+            },
+            'B.Sc': {
+                title: 'Bachelor of Science (B.Sc)',
+                icon: '🔬',
+                duration: '3 Years',
+                subjects: 'Physics, Chemistry, Mathematics, Botany, Zoology, Computer Science.',
+                career: 'Research Scientist, Lab Technician, Data Analyst, Teacher/Professor.',
+                description: 'A robust science program providing foundational knowledge in various science streams along with extensive laboratory work.'
+            },
+            'MBA': {
+                title: 'Master of Business Administration (MBA)',
+                icon: '📊',
+                duration: '2 Years',
+                subjects: 'Finance, Marketing, Human Resources, Supply Chain, Business Analytics.',
+                career: 'Marketing Manager, Financial Advisor, HR Manager, Entrepreneur, Operations Head.',
+                description: 'A postgraduate program designed to develop business and management skills, featuring excellent placement opportunities.'
+            }
+        };
+
+        // STAFF DETAILS DATA
+        const staffData = {
+            // Teaching
+            'Dr. Rajesh Sharma': {
+                dept: 'Computer Science',
+                role: 'Professor & HOD',
+                experience: '15 Years',
+                email: 'rajesh.sharma@college.edu',
+                description: 'Expertise in Artificial Intelligence and Cloud Computing. Published over 40 research papers.'
+            },
+            'Dr. Neha Gupta': {
+                dept: 'Management',
+                role: 'Associate Professor',
+                experience: '10 Years',
+                email: 'neha.gupta@college.edu',
+                description: 'Specializes in Human Resource Management and Organizational Behavior.'
+            },
+            'Dr. Amit Verma': {
+                dept: 'Physics',
+                role: 'Assistant Professor',
+                experience: '8 Years',
+                email: 'amit.verma@college.edu',
+                description: 'Focuses on Quantum Mechanics and Solid State Physics. Manages advanced physics labs.'
+            },
+            'Dr. Pooja Singh': {
+                dept: 'Commerce',
+                role: 'Senior Lecturer',
+                experience: '12 Years',
+                email: 'pooja.singh@college.edu',
+                description: 'Teaches advanced accounting and taxation. Mentors students for CA preparations.'
+            },
+            // Non-Teaching
+            'Mr. Suresh Kumar': {
+                dept: 'Administration',
+                role: 'Admissions Head',
+                experience: '20 Years',
+                email: 'admin@college.edu',
+                description: 'Handles all student admissions, scholarships, and administrative queries fluently.'
+            },
+            'Ms. Anita Singh': {
+                dept: 'Library Services',
+                role: 'Chief Librarian',
+                experience: '14 Years',
+                email: 'library@college.edu',
+                description: 'Manages the central library, digital resources, and coordinates reading programs.'
+            }
+        };
+
+        // 1. Function to show Course details
+        function showCourse(courseName) {
+            const data = coursesData[courseName];
+            const detailDiv = document.getElementById('courseDetails');
+            
+            if(data) {
+                detailDiv.innerHTML = `
+                    <h3 class="details-title">${data.icon} ${data.title}</h3>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p><strong>Description:</strong> ${data.description}</p>
+                            <p><strong>Core Subjects:</strong> ${data.subjects}</p>
+                            <p><strong>Career Options:</strong> <span class="text-success fw-bold">${data.career}</span></p>
+                        </div>
+                        <div class="col-md-4 border-start">
+                            <div class="p-3 bg-light rounded text-center">
+                                <h5 class="text-muted mb-3">Duration</h5>
+                                <h2 class="text-primary">${data.duration}</h2>
+                                <button class="btn btn-warning mt-3 w-100 fw-bold">Apply Now</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // Show the div smoothly
+                detailDiv.style.display = 'block';
+                // Scroll to details
+                detailDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // 2. Function to show Staff details
+        function showStaff(name) {
+            const data = staffData[name];
+            const detailDiv = document.getElementById('staffDetails');
+            
+            // Determine badge color based on role loosely
+            let badgeColor = 'bg-primary';
+            if(data.dept === 'Administration' || data.dept === 'Library Services') badgeColor = 'bg-secondary';
+            if(data.dept === 'Management') badgeColor = 'bg-success';
+            if(data.dept === 'Physics' || data.dept === 'Commerce') badgeColor = 'bg-info';
+
+            if(data) {
+                detailDiv.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center mb-3 details-title">
+                        <h3 class="mb-0">${name}</h3>
+                        <span class="badge ${badgeColor} fs-6">${data.dept}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><strong>Role:</strong> ${data.role}</p>
+                            <p><strong>Experience:</strong> ${data.experience}</p>
+                            <p><strong>Email Contacts:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+                            <p><strong>About:</strong> ${data.description}</p>
+                        </div>
+                    </div>
+                `;
+                detailDiv.style.display = 'block';
+                detailDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // 3. Form Toggling
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const modalTitle = document.getElementById('authModalLabel');
+
+        function showLoginForm() {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            modalTitle.innerText = 'Student Login';
+            generateCaptcha(); // refresh captcha on form show
+        }
+
+        function showSignupForm() {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            modalTitle.innerText = 'Create an Account';
+        }
+
+        // 4. CAPTCHA functionality
+        let currentCaptcha = "";
+        function generateCaptcha() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let captcha = "";
+            for(let i=0; i<6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            document.getElementById('captchaTextDisplay').innerText = captcha;
+            document.getElementById('loginCaptcha').value = '';
+        }
+
+        // Initialize captcha on load
+        window.onload = generateCaptcha;
+
+        // 5. Form Submission Interactions
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('loginCaptcha').value;
+            if(userInput.toUpperCase() !== currentCaptcha) {
+                alert("Invalid CAPTCHA! Please try again.");
+                generateCaptcha();
+                return;
+            }
+            
+            // Simulated login success
+            alert("Login Successful! Welcome to Student Corner.");
+            
+            // Close modal using Bootstrap API
+            let modalEl = document.getElementById('authModal');
+            let modalInstance = bootstrap.Modal.getInstance(modalEl);
+            modalInstance.hide();
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            // Basic validation is handled by HTML5 required attributes
+            alert("Sign Up Successful! Your dummy verification is complete.");
+            
+            // Switch to login
+            showLoginForm();
+        }
+    </script>
+</body>
+</html>
