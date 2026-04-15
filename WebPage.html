@@ -141,7 +141,7 @@
         }
 
         .nav-btn:hover, .nav-btn.active {
-            color: white;
+            color: rgb(197, 254, 25);
             background: linear-gradient(90deg, rgb(251, 4, 45), transparent);
         }
 
@@ -154,7 +154,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease;
-            background: rgba(0,0,0,0.2);
+            background: rgba(170, 119, 119, 0.963);
         }
         .nav-btn.active-dropdown + .dropdown-container {
             max-height: 200px;
@@ -162,10 +162,10 @@
         .dropdown-btn {
             padding: 12px 30px 12px 60px;
             font-size: 0.95rem;
-            color: #8892b0;
+            color: #f3b406;
         }
         .dropdown-btn:hover {
-            color: #ffff66;
+            color: #f1f10c;
         }
 
         /* MAIN CONTENT AREA */
@@ -280,7 +280,7 @@
         .btn-glow {
             background: linear-gradient(45deg, var(--accent-2), var(--accent-1));
             border: none;
-            color: white;
+            color: rgb(237, 87, 87);
             padding: 12px 30px;
             border-radius: 30px;
             font-weight: 600;
@@ -291,7 +291,7 @@
         .btn-glow:hover {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 0 25px var(--accent-glow);
-            color: white;
+            color: rgb(215, 67, 67);
         }
 
         .btn-outline-glass {
@@ -370,9 +370,9 @@
             border-radius: 10px;
         }
         .form-control:focus, .form-select:focus {
-            background: rgba(255,255,255,0.05);
+            background: rgba(233, 203, 203, 0.956);
             border-color: var(--accent-1);
-            color: white;
+            color: rgb(0, 17, 2);
             box-shadow: 0 0 0 0.2rem rgba(0, 210, 255, 0.25);
         }
         .form-control::placeholder { color: rgba(255,255,255,0.4); }
@@ -434,7 +434,7 @@
                 <h4 class="mb-0 fw-bold">Welcome to University of Jammu</h4>
             </div>
             <div class="header-tagline">
-                <i class="fa-solid fa-award text-warning"></i> NAAC A++ ACCREDITED
+                <i class="fa-solid fa-award text-warning"></i> NAAC A++
             </div>
             <button class="btn btn-outline-glass btn-sm" data-bs-toggle="modal" data-bs-target="#searchModal">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -782,7 +782,7 @@
                             <input type="email" class="form-control" required>
                         </div>
                         <div class="mb-4">
-                            <label class="form-label text-muted">Program Interested</label>
+                            <label class="form-label text-primary">Program Interested</label>
                             <select class="form-select">
                                 <option>BCA</option>
                                 <option>B.Sc</option>
