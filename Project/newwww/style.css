@@ -1,0 +1,19 @@
+:root {
+        --primary-bg: #b5eb12f6;
+            --glass-bg: rgba(44, 4, 21, 0.958);
+                --glass-border: rgba(165, 21, 134, 0.901);
+                    --accent-1: #5e8d06d2;
+                        --accent-2: #d81616;
+                            --accent-glow: rgba(186, 233, 31, 0.954);
+                                --text-main: #e6f1ff;
+                                    --text-muted: #a8b2d1;
+                                        --sidebar-width: 280px;
+                                        }
+
+                                        /* ... Paste all your CSS from the original file here ... */
+
+                                        .section {
+                                            display: block; /* Modified for modular loading */
+                                                opacity: 1;
+                                                    transform: none;   
+}
