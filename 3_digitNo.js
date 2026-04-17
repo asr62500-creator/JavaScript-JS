@@ -7,6 +7,7 @@ let digit3 = num % 10;
 let sum = digit1 + digit2 + digit3;
 
 document.write("Sum of digits: " + sum);
+console.log( " Sum of digits: ", sum);
 
 //****************************************************** */
 let numm = Number(prompt("Enter a 3-digit numberrrr:"));
@@ -17,3 +18,4 @@ while(numm > 0){
     numm=(numm-digit)/10;
 }
 document.write("<br>Sum of digits: " + summ);
+console.log( " Sum of digits: ", sum);

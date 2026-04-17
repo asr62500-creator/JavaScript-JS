@@ -1,9 +1,19 @@
 // Function to load external HTML sections
+const sectionFiles = {
+    home: '1_home.html',
+    courses: '2_courses.html',
+    student: '3_student_corner.html',
+    academic: '4_academic.html',
+    staff: '5_faculty.html',
+    about: '6_About.html',
+    contact: '7_contact_section.html'
+};
+
 async function loadSection(sectionName) {
     const contentArea = document.getElementById('content-area');
     try {
-        // Fetch HTML files dynamically from the root directory
-        const response = await fetch(`${sectionName}.html`);
+        const fileName = sectionFiles[sectionName] || `${sectionName}.html`;
+        const response = await fetch(fileName);
         if (!response.ok) throw new Error('Failed to load file');
         
         const html = await response.text();

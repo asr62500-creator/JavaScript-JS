@@ -1,31 +1,21 @@
-<div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-plus me-2 text-info"></i> New Registration</h5>
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-lock me-2 text-info"></i> Secure Login</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-4">
-                <form onsubmit="event.preventDefault(); alert('Registration submitted for approval!');">
+                <form onsubmit="event.preventDefault(); alert('Logged in securely!');">
                     <div class="mb-3">
-                        <label class="form-label text-muted">Full Name</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label text-muted">Email Address</label>
-                        <input type="email" class="form-control" required>
+                        <label class="form-label text-muted">Student ID / Email</label>
+                        <input type="text" class="form-control" required placeholder="Enter UID">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label text-primary">Program Interested</label>
-                        <select class="form-select">
-                            <option>BCA</option>
-                            <option>B.Sc</option>
-                            <option>MCA</option>
-                            <option>MBA</option>
-                            <option>Other</option>
-                        </select>
+                        <label class="form-label text-muted">Password</label>
+                        <input type="password" class="form-control" required placeholder="••••••••">
                     </div>
-                    <button type="submit" class="btn btn-outline-glass w-100" style="background-color: var(--accent-1); color: black;">Register Now</button>
+                    <button type="submit" class="btn btn-glow w-100">Access Portal</button>
                 </form>
             </div>
         </div>
