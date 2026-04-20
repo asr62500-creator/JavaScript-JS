@@ -13,9 +13,9 @@ console.log( " Sum of digits: ", sum);
 let numm = Number(prompt("Enter a 3-digit numberrrr:"));
 let summ=0;
 while(numm > 0){
-    let digit= numm%10;
-    summ=summ+digit;
-    numm=(numm-digit)/10;
+    let digit= numm%10;//last digit
+    summ=summ+digit; //sum of digits
+    numm=(numm-digit)/10;//remove last digit    
 }
 document.write("<br>Sum of digits: " + summ);
-console.log( " Sum of digits: ", sum);
+console.log( " Sum of digits: ", summ);
