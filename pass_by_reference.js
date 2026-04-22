@@ -51,3 +51,4 @@ function modifyElement(e) {
     // Only local value changes
     console.log("Value inside modifyElement:", e);
 }
+start();
