@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript">
+
+// Function triggered on button click
+function popup1() {
+    alert("Hello World"); 
+    // Shows alert when button is clicked
+}
+
+// Function triggered when mouse hovers over link
+function popup2() {
+    alert("Will open Google.com on click ");
+    // Shows message when mouse enters link
+}
+
+// Function triggered when mouse leaves link
+function popup3() {
+    alert("Mouse Out Event Occured ");
+    // Shows message when mouse leaves link
+}
+
+</script>
+</head>
+
+<body>
+
+<!-- BUTTON CLICK EVENT -->
+<input type="button" 
+       value="Click Me!" 
+       onclick="popup1()">  
+<!-- When clicked → popup1() runs -->
+
+<br>
+<br>
+<br>
+
+<!-- LINK WITH MOUSE EVENTS -->
+<a href="https://www.google.co.in/"
+   onmouseover="popup2()"   <!-- when mouse enters -->
+   onmouseout="popup3()">   <!-- when mouse leaves -->
+   
+   Hover Me!
+</a>
+
+</body>
+</html>

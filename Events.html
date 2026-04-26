@@ -1,0 +1,55 @@
+<html>
+<head>
+<script type="text/javascript">
+
+// Opens a popup window
+function newPopup(url) {
+    popupWindow = window.open(
+        url, 
+        'popUpWindow', 
+        'height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,status=yes'
+    );
+}
+
+// Shows alert message
+function displaymessage() {
+    alert("Display Message Function Invoked......");
+}
+
+</script>
+</head>
+
+<body>
+
+<!-- Opens popup window -->
+<a href="JavaScript:newPopup('http://www.ugc.ac.in/inside/fakealerts.html');">Fake University Alerts
+</a>
+
+<br>
+
+<!-- Status bar message on hover -->
+<a href="http://www.ugc.ac.in/inside/net.html"
+   onmouseover="window.status='UGC NET Details...';"
+   onmouseout="window.status=''">NET DETAILS
+</a>
+
+<br>
+
+<form>
+
+<!-- Button → calls function -->
+<input type="button"
+       onclick="displaymessage();"
+       value="Display Message Function ..." />
+
+<br>
+
+<!-- Button → direct alert -->
+<input type="button"
+       onclick="alert('Pressed and Alert message seen.');"
+       value="Press to see alert" />
+
+</form>
+
+</body>
+</html>
