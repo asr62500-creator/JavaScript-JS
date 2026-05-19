@@ -14,20 +14,20 @@ function start() {
     outputArray("After modification:", a);
 
     // Access 4th element (index 3)
-    console.log("4th element before passing:", a[3]);
-
+    document.writeln("4th element before passing:", a[3]);
+    
     // Pass single element (primitive value)
     // Only the value (copy) is passed, not reference
     modifyElement(a[3]);
 
     // Original value remains unchanged
-    console.log("4th element after passing:", a[3]);
+    document.writeln("4th element after passing:", a[3]);
 }
 
 // Function to print array elements
 function outputArray(msg, arr) {
 
-    console.log(msg, arr.join(" "));  // join(" ") converts array into string with space between elements
+    document.writeln(msg + " " + arr.join(" "));  // join(" ") converts array into string with space between elements
 }    
 
 // Function to modify entire array
@@ -49,6 +49,7 @@ function modifyElement(e) {
         // This does NOT affect original array element
     
     // Only local value changes
-    console.log("Value inside modifyElement:", e);
+    document.writeln("Value inside modifyElement:", e);
+
 }
 start();

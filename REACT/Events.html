@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>React Events Example</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+const { useState } = React;
+
+function App() {
+
+    const [msg, setMsg] = useState("No Event Yet");
+
+    // MOUSE EVENT
+    function handleClick() {
+
+        setMsg("Mouse Click Event Triggered");
+
+    }
+
+    // KEYBOARD EVENT
+    function handleKeyDown() {
+
+        setMsg("Keyboard Key Pressed");
+
+    }
+
+    // FORM EVENT
+    function handleSubmit(e) {
+
+        e.preventDefault();
+
+        setMsg("Form Submitted");
+
+    }
+
+    return (
+
+        <div>
+
+            <h1>React Events Example</h1>
+
+            <button onClick={handleClick}>
+                Click Me
+            </button>
+
+            <br /><br />
+
+            <input
+                type="text"
+                placeholder="Type Something"
+                onKeyDown={handleKeyDown}
+            />
+
+            <br /><br />
+
+            <form onSubmit={handleSubmit}>
+
+                <input
+                    type="text"
+                    placeholder="Enter Name"
+                />
+
+                <button type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+            <br />
+
+            <h2>{msg}</h2>
+
+        </div>
+
+    );
+
+}
+
+ReactDOM.createRoot(
+    document.getElementById("root")
+).render(<App />);
+
+</script>
+
+</body>
+
+</html>

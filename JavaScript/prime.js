@@ -23,3 +23,21 @@ else {
     console.log(num , " is NOT a Prime number");
     document.write(num , " is NOT a Prime number");
 }
+
+//By while loop
+let i=2;
+while(i<num){
+    if (num % i === 0) {
+        isPrime = false;  // divisible → not prime
+        break;
+    }
+    i++;
+}
+if(isPrime===true && num > 1){
+    console.log(num , " is a Prime number");
+    document.write(num , " is a Prime number");
+}
+else {
+    console.log(num , " is NOT a Prime number");
+    document.write(num , " is NOT a Prime number");
+}

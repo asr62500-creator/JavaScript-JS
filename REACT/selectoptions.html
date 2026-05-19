@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>React Events Example</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+const { useState } = React;
+
+function MyForm() {
+
+    const [mycourse, setMyCourse] = useState("MCA");
+
+    const Change = (event) => {
+
+        setMyCourse(event.target.value);
+
+    }
+
+    return (
+        <div>
+
+             <form>
+
+                 <select
+                    value={mycourse}
+                    onChange={Change}
+                >
+
+                    <option value="MBA">MBA</option>
+
+                    <option value="MCA">MCA</option>
+
+                    <option value="Msc">M.Sc.</option>
+
+                </select>
+
+            </form>
+            <h2>Selected Course: {mycourse}</h2>
+        </div>
+
+    );
+
+}
+
+ReactDOM.createRoot(
+    document.getElementById('root')
+).render(<MyForm />);
+
+</script>
+
+</body>
+</html>

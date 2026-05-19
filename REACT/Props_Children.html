@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Fun2(props1) {
+    
+
+
+    return (
+
+        <div style={{background:'lightgreen'}}>
+
+            <h2>Function Two</h2>
+
+            <div>{props1.children}</div>
+
+        </div>
+
+    );
+
+}
+
+function Fun3(props2) {
+
+    return (
+
+        <div style={{background:'lightblue'}}>
+
+            <h2>Function Three</h2>
+
+            <div>{props2.children}</div>
+
+        </div>
+
+    );
+
+}
+
+function Fun1() {
+
+    return (
+
+        <div>
+
+            <h1>This is the Function One</h1>
+
+            <Fun2>
+
+                <p>
+                    Department of Computer Science
+                    and IT
+                </p>
+
+            </Fun2>
+
+            <Fun3>
+
+                <p>
+                    Web Technology
+                </p>
+
+            </Fun3>
+
+        </div>
+
+    );
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Fun1 />);
+
+</script>
+
+</body>
+<html></html>
